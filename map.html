@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -175,37 +175,37 @@
     <script>
         var name_index = [
         { index: 0 },
-        { index: 0, name: "105-09-27梅姬颱風" },
-        { index: 73, name: "105-09-18莫蘭蒂颱風" },
-        { index: 85, name: "105-07-08尼伯特颱風" },
-        { index: 95, name: "104-08-08蘇迪勒颱風" },
-        { index: 114, name: "104-05-20豪雨淹水範圍" },
-        { index: 121, name: "103-09-21鳳凰颱風" },
-        { index: 122, name: "103-08-07豪雨" },
-        { index: 127, name: "103-07-22麥德姆颱風" },
-        { index: 132, name: "103-06-03豪雨" },
-        { index: 151, name: "102-08-31豪雨" },
-        { index: 157, name: "102-08-29康芮颱風" },
-        { index: 231, name: "102-08-22潭美颱風" },
-        { index: 237, name: "101-08-24天秤颱風" },
-        { index: 242, name: "101-08-01蘇拉颱風" },
-        { index: 300, name: "101-06-10豪雨" },
-        { index: 344, name: "100-08-28南瑪都颱風" },
-        { index: 362, name: "100-10-02豪雨" },
-        { index: 366, name: "99-10-21梅姬颱風" },
-        { index: 380, name: "99-09-19凡那比颱風" },
-        { index: 494, name: "98-10-04芭瑪颱風" },
-        { index: 503, name: "98-08-08莫拉克颱風" },//+1//74
-        { index: 678, name: "97-09-28薔蜜颱風" },
-        { index: 687, name: "97-09-14辛樂克颱風" },
-        { index: 694, name: "97-07-18卡玫基颱風" },//+2//23.57
-        { index: 914, name: "96-08-18聖帕颱風" }, //+1//24
-        { index: 916, name: "94-06-12豪雨" },
-        { index: 1010, name: "94-易淹水調查" },
-        { index: 1159, name: "93-12-03南瑪都颱風" },
-        { index: 1162, name: "93-08-25艾利颱風" },
-        { index: 1163, name: "93-07-02水災" },
-        { index: 1227 }
+        { index: 0, name: "105-09-27梅姬颱風" }, 
+        { index: 74, name: "105-09-18莫蘭蒂颱風" }, 
+        { index: 90, name: "105-07-08尼伯特颱風" },
+        { index: 96, name: "104-08-08蘇迪勒颱風" },
+        { index: 115, name: "104-05-20豪雨淹水範圍" },
+        { index: 122, name: "103-09-21鳳凰颱風" },
+        { index: 123, name: "103-08-07豪雨" },
+        { index: 128, name: "103-07-22麥德姆颱風" },
+        { index: 133, name: "103-06-03豪雨" },
+        { index: 152, name: "102-08-31豪雨" },
+        { index: 158, name: "102-08-29康芮颱風" },
+        { index: 233, name: "102-08-22潭美颱風" },
+        { index: 239, name: "101-08-24天秤颱風" },
+        { index: 244, name: "101-08-01蘇拉颱風" },
+        { index: 302, name: "101-06-10豪雨" },
+        { index: 347, name: "100-08-28南瑪都颱風" },
+        { index: 365, name: "100-10-02豪雨" },
+        { index: 369, name: "99-10-21梅姬颱風" },
+        { index: 383, name: "99-09-19凡那比颱風" },
+        { index: 497, name: "98-10-04芭瑪颱風" },
+        { index: 506, name: "98-08-08莫拉克颱風" },
+        { index: 682, name: "97-09-28薔蜜颱風" },
+        { index: 691, name: "97-09-14辛樂克颱風" },
+        { index: 698, name: "97-07-18卡玫基颱風" },
+        { index: 918, name: "96-08-18聖帕颱風" }, 
+        { index: 920, name: "94-06-12豪雨" },
+        { index: 1014, name: "94-易淹水調查" },
+        { index: 1163, name: "93-12-03南瑪都颱風" },
+        { index: 1166, name: "93-08-25艾利颱風" },
+        { index: 1167, name: "93-07-02水災" },
+        { index: 1231 }
          ];
 
          //tootip
@@ -243,7 +243,7 @@
             .attr("class", "feature")
 
                 //  console.log(geojson.features)
-      d3.json("https://raw.githubusercontent.com/Penny8336/mapExample/e4fd465d111a065c8115f2d4e2f67264af0543e1/total.geojson", drawArea)
+      d3.json("https://raw.githubusercontent.com/Penny8336/mapExample/master/total.geojson", drawArea)
 
         function drawArea(err, geojson) {
                 if (err) throw err
