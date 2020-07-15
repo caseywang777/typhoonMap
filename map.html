@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!-- <!DOCTYPE html> -->
 <html>
 
 <head>
@@ -70,7 +70,7 @@
         pointer-events: none;
     }	
 
-	.area{
+	.area1{
 		fill: rgb(56, 147, 250); 
 		stroke: rgb(56, 147, 250);		
 		stroke-width: 8px;
@@ -79,6 +79,24 @@
         opacity: .7;
 	}
 
+    .area2{
+		fill: rgb(198, 112, 248); 
+		stroke: rgb(198, 112, 248);		
+		stroke-width: 8px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        opacity: .7;
+    }
+    
+    .area3{
+		fill: rgb(96, 223, 70); 
+		stroke: rgb(96, 223, 70);		
+		stroke-width: 8px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        opacity: .7;
+    }
+    
 	.chArea{
 		fill: rgb(243, 132, 27); 
 		stroke: rgb(243, 132, 27);		
@@ -106,10 +124,12 @@
         font-size: 18px;
         border: 0px;
         width: 200px;
+        height: 32px;
         text-align-last: center;
         background-color: rgb(255, 255, 255);
         color: rgb(0, 0, 0);
         cursor: pointer;
+        margin-left: 20px;
     }
 
     .forhistogram{
@@ -133,6 +153,20 @@
     .text-max {
         font-size: 11px;
     }
+    .textsize{
+        font-size: 11px;
+    }
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    
+    font-size: 12px;
+    }
     </style>
     
 
@@ -144,335 +178,38 @@
     </main>
         <div class="container">
             <section class="jumbotron text-center" style="background-color: #e1eef5;">
-            <h1>Map example</h1>
-            <h3>this is an undated git test </h3>
-            <p >Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+            <h3>Flood Maps</h1>
+            <p >Something short and leading about ...</p>
             </section>
         </div>
       
-
-
-
-        <div  class="container">
+        <div > 
             <div class="row" id="row1">
-                <div class="col-sm-6" style="background-color:#e1eef5;" id="choose"></div>
+                <div class="col-sm-2" ></div>
+                <div class="col-sm-2" style="background-color:#e1eef5;" id="choose"></div>
+                <div class="col-sm-2"> <buttpon id ="but" class="button"> Download Data</button> </div>
                 <div class="col-sm-6" style="background-color:#e1eef5;"></div>
             </div>
             
             <div class="row"id="row2">
-                <div class="col-sm-6"  id="taiwan">
+                <div class="col-sm-2" ></div>
+                <div class="col-sm-4"  id="taiwan">
                     <div id="taiwantooltip"></div>
                 </div>
         
-                <div class="col-sm-6" id="histogram" style="background-color:#e1eef5;" > 
-                    <p >area bar chart (Square meter )</p>
+                <div class="col-sm-4" id="histogram" style="background-color:#e1eef5;" > 
+                    <p >area bar chart (Square meter)</p>
                     <div id = "town"  style="height: 30px">　 </div>
-
+                    <div id="areaBarChart"></div>
                 </div>
+                <div class="col-sm-2" ></div>
         </div>
         </div>
 
-    <script>
-        var name_index = [
-        { index: 0 },
-        { index: 0, name: "105-09-27梅姬颱風" }, 
-        { index: 74, name: "105-09-18莫蘭蒂颱風" }, 
-        { index: 90, name: "105-07-08尼伯特颱風" },
-        { index: 96, name: "104-08-08蘇迪勒颱風" },
-        { index: 115, name: "104-05-20豪雨淹水範圍" },
-        { index: 122, name: "103-09-21鳳凰颱風" },
-        { index: 123, name: "103-08-07豪雨" },
-        { index: 128, name: "103-07-22麥德姆颱風" },
-        { index: 133, name: "103-06-03豪雨" },
-        { index: 152, name: "102-08-31豪雨" },
-        { index: 158, name: "102-08-29康芮颱風" },
-        { index: 233, name: "102-08-22潭美颱風" },
-        { index: 239, name: "101-08-24天秤颱風" },
-        { index: 244, name: "101-08-01蘇拉颱風" },
-        { index: 302, name: "101-06-10豪雨" },
-        { index: 347, name: "100-08-28南瑪都颱風" },
-        { index: 365, name: "100-10-02豪雨" },
-        { index: 369, name: "99-10-21梅姬颱風" },
-        { index: 383, name: "99-09-19凡那比颱風" },
-        { index: 497, name: "98-10-04芭瑪颱風" },
-        { index: 506, name: "98-08-08莫拉克颱風" },
-        { index: 682, name: "97-09-28薔蜜颱風" },
-        { index: 691, name: "97-09-14辛樂克颱風" },
-        { index: 698, name: "97-07-18卡玫基颱風" },
-        { index: 918, name: "96-08-18聖帕颱風" }, 
-        { index: 920, name: "94-06-12豪雨" },
-        { index: 1014, name: "94-易淹水調查" },
-        { index: 1163, name: "93-12-03南瑪都颱風" },
-        { index: 1166, name: "93-08-25艾利颱風" },
-        { index: 1167, name: "93-07-02水災" },
-        { index: 1231 }
-         ];
 
-         //tootip
-        var divbar =d3.select("#town")        
-        var projection = d3.geoMercator().center([122.5,24]).scale(6000)
-        var path = d3.geoPath().projection(projection) //創造path
-        var active = d3.select(null);
-
-        var svg = d3.select("#taiwan").append("svg")
-            .attr("height", 500)
-            .attr("width", 500)
-            .attr("class","fortaiwan")
-            .call(d3.zoom()
-            .on("zoom", function () {
-                d3.select("#taiwan").select("svg").selectAll("g")
-                    .attr("transform", d3.event.transform)
-                var temp = document.getElementById('area').transform.baseVal[1].matrix.a
-                //console.log(temp)
-                if ( temp >=  8) {
-                    d3.select("#area").attr("class", "detail")
-                    d3.select("#map").attr("class","featuredetail")
-                }
-                else if (temp < 8){
-                    d3.select("#area").attr("class", "area")
-                }
-            }))
-        var g = svg.append("g")
-
-        function drawMap(err, Tgeojson) {
-        if (err) throw err
-        g.selectAll("path")
-            .data(Tgeojson.features)
-            .enter().append("path")
-            .attr("d", path)
-            .attr("class", "feature")
-
-                //  console.log(geojson.features)
-      d3.json("https://raw.githubusercontent.com/Penny8336/mapExample/master/total.geojson", drawArea)
-
-        function drawArea(err, geojson) {
-                if (err) throw err
-              console.log(geojson)
-                var select = d3.select("#choose").append("select")
-                    .attr("class", "pretty-select")
-                    .attr("id", "selections")
-                    .on('change', onchange);
-        
-                select.selectAll("option")
-                    .data(name_index)
-                    .enter().append("option")
-                    .attr("value", function(d) {
-                        return d.index; })
-                    .text(function(d) {
-                        return d.name;})
-
-                function onchange() {
-                d3.selectAll("#area")
-                .remove()
-                d3.selectAll(".forhistogram")
-                .remove()
-                    var myselect=document.getElementById("selections")
-                    var index=myselect.selectedIndex;
-                    var start = myselect.options[index].value
-                    var end = myselect.options[index+1].value
-                    var area =  geojson.features
-                    var choosearea = area.slice(start,end)
-                    var histogramA = []
-                    var getmax = []
-                    var statistics = []
-                    console.log(choosearea)
-                    for (i = start; i < end; i++) {
-                        var calTown = geojson.features[i].properties.COUNTYNAME
-                        var calTownC = geojson.features[i].properties.COUNTYCODE
-                        var calArea = turf.area(geojson.features[i]).toFixed(2)
-                        var calAreaName = geojson.features[i].properties.name
-                        var village = geojson.features[i].properties.TOWNNAME
-                        console.log(calArea);
-
-                        histogramA.push({name: calAreaName, area: calArea, town: calTown, towncode: calTownC})
-            
-
-                             if(statistics.some(statistics => statistics.name == calTownC)){
-                                //console.log("the same")
-                                var pos = parseInt(statistics.map(function(e) { return e.name; }).indexOf(calTownC))
-                                var hello = parseInt(statistics[pos].total) +parseInt(calArea)  //console 出來是藍色的即數字
-                                statistics[pos].total = hello
-                                statistics[pos].log = Math.log2(hello)
-                                getmax.push(statistics[pos].total)
-                                var temp = statistics[pos].nameS
-                                    if(statistics[pos]["names"].indexOf(village)>-1){
-                                        console.log("the same")
-                                    }
-                                    else{
-                                        statistics[pos]["names"] += "," + village 
-                                    }
-                        }
-                            else{
-                                statistics.push({name: calTownC, total:parseInt(calArea), TOWN: calTown, log:Math.log2(parseInt(calArea)),names: village })
-                                var pos = parseInt(statistics.map(function(e) { return e.name; }).indexOf(calTownC))
-                                getmax.push(statistics[pos].total)
-
-                            }
-
-                    }
-                    console.log(statistics);
-
-                    var max = getmax.reduce(function(a, b) {
-                    return Math.max(a, b);
-                    });
-
-                    //console.log(Math.max(max))
-                    if ((statistics.length)<3) {
-                        pad = 0.7
-                        makewidth = 460
-                        textsize = "text-histogram";
-                    }
-                    else if ((statistics.length)>5) {
-                        if ((statistics.length)>10) {
-                        pad = 0.2
-                        makewidth = 900
-                        textsize = "text-small";
-                    }
-                    else {
-                        textsize = "text-max"
-                            makewidth = 550
-                            pad = 0.2
-                        }
-                        }
-                        else {
-                        pad = 0.4
-                        makewidth = 500
-                        textsize = "text-histogram";
-                        }
-
-                    // set the dimensions and margins of the graph
-                    var margin = {top: 100, right: 40, bottom: 35, left: 80},
-                        width = makewidth - margin.left - margin.right,
-                        height = 450 - margin.top - margin.bottom;
-
-                    // append the svg object to the body of the page
-                    var svg = d3.select("#histogram")
-                        .append("svg")
-                        .attr("id", "toohis")
-                        .attr("class", "forhistogram")
-                        .attr("width", width + margin.left + margin.right)
-                        .attr("height", height + margin.top + margin.bottom)
-                        .append("g")
-                        .attr("transform","translate(" + margin.left + "," + margin.top + ")")
-
-                    // X axis
-                    var x = d3.scaleBand()
-                    .range([ 0, width ])
-                    .domain(statistics.map(function(d) { return d.TOWN; }))
-                    .padding(pad)      // <== Add these);
-
-
-                    svg.append("g")
-                        .attr("transform", "translate(0," + height + ")")
-                        .call(d3.axisBottom(x))
-                        .selectAll("text")
-                        .attr("transform", "translate(-10,0)rotate(-45)")
-                        .style("text-anchor", "end")
-                        .style("font-size",12 )
-
-                    // Add Y axis
-                    var y = d3.scaleLinear()
-                        .domain([0, max])
-                        .range([ height, 0]);
-                    
-                    svg.append("g")
-                        .call(d3.axisLeft(y));
-
-                    // Bars
-                    svg.selectAll("mybar")
-                        .data(statistics)
-                        .enter()
-                        .append("rect")
-                        .attr("x", function(d) { return x(d.TOWN); })
-                        .attr("width", x.bandwidth())
-                        .attr("fill", "#69b3a2")
-                        // no bar at the beginning thus:
-                        .attr("height", function(d) { return height - y(0); }) // always equal to 0
-                        .attr("y", function(d) { return y(0); })
-                        .on("mouseover", function(z) {
-                            divbar.transition()
-                                .duration(200)
-                                .style("opacity", .9);
-
-                            divbar.html( z.names )
-
-                        // console.log(bar)
-                        // console.log(this);		
-                        })		
-
-                    // Animation
-                    svg.selectAll("rect")
-                    .transition()
-                    .duration(800)
-                    .attr("y", function(d) { return y(d.total); })
-                    .attr("height", function(d) { return height - y(d.total); })
-                    .delay(function(d,i){ return(i*100)})
-                    
-                    //text
-                    svg.selectAll("mytext")
-                         .data(statistics)
-                        .enter()
-                        .append('text')
-                        .text(function(d) { return ( numeral(d.total).format('0,0')); })
-                        .attr("x", function(d) { return x(d.TOWN); })
-                        .attr("height", function(d) {return height - y(0); }) // always equal to 0
-                        .attr("y", function(d) {return y(0)-20; })
-                        .style("text-anchor", "start")
-                        .attr("class",textsize)
-
-
-                    svg.selectAll("text")
-                        .transition()
-                        .duration(800)
-                        .attr("y", function(d) { return y(d.total); })
-                        .attr("height", function(d) { return height - y(d.total); })
-                        .delay(function(d,i){ return(i)})
-
-                        //tootip
-                    var div =d3.select("#taiwantooltip").append("div")
-                        .attr("class", "tooltip")
-                        .style("opacity", 0)
-
-                    //drawarea
-                    d3.select("#taiwan").select("svg").append("g")
-                        .attr("class", "area")
-                        .attr("id","area")
-                        .selectAll("path")
-                        .data(choosearea)
-                        .enter().append("path")
-                        .attr("d", path)
-                        .on("mouseover", function(z) {
-                            var name = (z.properties.name)
-                            var CN = (z.properties.COUNTYNAME)
-                            console.log(CN)
-                            console.log(z)
-                            console.log(this)
-                            
-                            div.transition()
-                                .duration(200)
-                                .style("opacity", .9);
-                            div.html( CN  + z.properties.TOWNNAME + "<br>" + name )
-                                .style("left", (d3.event.pageX/2) + "px")
-                                .style("top", ((d3.event.pageY - 28)/2) + "px")
-                            var bar =d3.select("#histogram").select("svg").selectAll("rect")
-                        // console.log(bar)
-                        // console.log(this);		
-                        })		
-                        .on("mouseout", function(d) {
-                            div.transition()
-                                .duration(500)
-                                .style("opacity", 0);
-                        })
-                        
-        }
-        //console.log("histogram")
-        }//drawarea
-        }
-
-        d3.json("https://raw.githubusercontent.com/Penny8336/mapExample/master/taiwan.json", drawMap)
-    </script>
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script  src="./js.js"></script>
 
 </body>
 </html>
