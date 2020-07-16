@@ -75,7 +75,6 @@ function drawMap(err, Tgeojson) {
 		d3.json(townArea, townareaf)
 
 		function townareaf(err,tjosn){
-
 		
 		if (err) throw err
 		//Drop-down menu
@@ -113,11 +112,11 @@ function drawMap(err, Tgeojson) {
 				var countyCode = getAttr.COUNTYCODE
 				var countyName = getAttr.COUNTYNAME
 				var townName = getAttr.TOWNNAME
-				var name = getAttr.name //有時候null
+				var name = getAttr.name //有時候name有路名有時候null
 				var calArea = turf.area(geojson.features[i]).toFixed(2)
 				for (k=0; k<tjosn.features.length; k++){
 					if (townName == tjosn.features[k].properties.T_Name){
-						var townArea = turf.area(tjosn.features[k]).toFixed(2)
+						var townArea = tjosn.features[k].properties.Area
 						console.log(townName,townArea)
 						break;
 					}
@@ -322,6 +321,7 @@ function exportCSVFile(headers, items, fileTitle) {
 }
 function download(NotFormatted,tyName) {
 	var headers = {
+		// typhoon: "颱風名稱",
 		model: "縣市區", // remove commas to avoid errors
 		chargers: "Name",
 		earphones: "面積",
@@ -337,6 +337,7 @@ function download(NotFormatted,tyName) {
 			// console.log(town.name)
 			// console.log(town.calArea)
 			itemsFormatted.push({
+				// typhoon: tyName,
 				model: town.townName,
 				chargers: town.name,
 				earphones: town.townArea,
