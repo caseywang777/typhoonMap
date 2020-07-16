@@ -2,7 +2,7 @@
 1.Download csv file.  
 2.Observe four typhoons at the same time.  
 
-area Reference: https://tinyurl.com/ydx3wpqd
+area geojson Reference: https://tinyurl.com/ydx3wpqd
 
 ![image](https://raw.githubusercontent.com/Penny8336/typhoonMap/Penny8336-0715upDate/%E6%93%B7%E5%8F%96.PNG)
 #### typhoonMap
