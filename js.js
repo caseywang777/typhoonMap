@@ -322,7 +322,6 @@ function exportCSVFile(headers, items, fileTitle) {
 }
 function download(NotFormatted,tyName) {
 	var headers = {
-		typhoon: "颱風名稱",
 		model: "縣市區", // remove commas to avoid errors
 		chargers: "Name",
 		earphones: "面積",
@@ -338,7 +337,6 @@ function download(NotFormatted,tyName) {
 			// console.log(town.name)
 			// console.log(town.calArea)
 			itemsFormatted.push({
-				typhoon: tyName,
 				model: town.townName,
 				chargers: town.name,
 				earphones: town.townArea,
