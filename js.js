@@ -1,4 +1,5 @@
 var eventarea = "https://raw.githubusercontent.com/Penny8336/mapExample/master/total.geojson";
+var townArea = "https://raw.githubusercontent.com/Penny8336/DV-homework2/master/taiwantown.json";
 var name_index = [
 	{ index: 0 },
 	{ index: 0, name: "105-09-27梅姬颱風" },
@@ -42,7 +43,7 @@ var active = d3.select(null);
 
 var svg = d3.select("#taiwan").append("svg")
 	.attr("height", 800)
-	.attr("width", 500)
+	.attr("width", 400)
 	.attr("class", "fortaiwan")
 	.call(d3.zoom()
 	.on("zoom", function () {
@@ -60,6 +61,7 @@ var svg = d3.select("#taiwan").append("svg")
 var g = svg.append("g")
 var flag = 0
 function drawMap(err, Tgeojson) {
+	
 	if (err) throw err
 	g.selectAll("path")
 		.data(Tgeojson.features)
@@ -70,6 +72,11 @@ function drawMap(err, Tgeojson) {
 	d3.json(eventarea, drawEachArea)
 
 	function drawEachArea(err, geojson) {
+		d3.json(townArea, townareaf)
+
+		function townareaf(err,tjosn){
+
+		
 		if (err) throw err
 		//Drop-down menu
 		var select = d3.select("#choose").append("select")
@@ -84,7 +91,7 @@ function drawMap(err, Tgeojson) {
 			.text(function (d) {return d.name;})
 
 		function onchange() {
-			if (flag == 3){
+			if (flag == 4){
 				d3.selectAll("#area").remove()
 				d3.selectAll("#barchartID").remove()
 				flag = 0
@@ -108,9 +115,9 @@ function drawMap(err, Tgeojson) {
 				var townName = getAttr.TOWNNAME
 				var name = getAttr.name //有時候name有路名有時候null
 				var calArea = turf.area(geojson.features[i]).toFixed(2)
-				for (k=0; k<Tgeojson.features.length; k++){
-					if (townName == Tgeojson.features[k].properties.T_Name){
-						var townArea = turf.area(Tgeojson.features[k]).toFixed(2)
+				for (k=0; k<tjosn.features.length; k++){
+					if (townName == tjosn.features[k].properties.T_Name){
+						var townArea = turf.area(tjosn.features[k]).toFixed(2)
 						console.log(townName,townArea)
 						break;
 					}
@@ -135,7 +142,7 @@ function drawMap(err, Tgeojson) {
 			document.getElementById("but").onclick = function() {download(statistics,tyName)};
 
 			barChart(statistics,tyName,flag);
-			var colorlist = ["area1","area2","area3"]
+			var colorlist = ["area1","area2","area3","area4"]
 
 			//drawarea
 			//tootip
@@ -176,6 +183,7 @@ function drawMap(err, Tgeojson) {
 		//console.log("histogram")
 	}//drawarea
 }
+}
 
 function barChart(statistics,tyName){
 	// var barName = d3.select("#town")
@@ -190,7 +198,8 @@ function barChart(statistics,tyName){
 	var color1 = ["#B6CED1", "#85C1E9" ,"#3498DB","#2874A6","#1B4F72"]
 	var color2 = ["#D7BDE2", "#BB8FCE" ,"#A569BD","#8E44AD","#6C3483"]
 	var color3 = ["#A2D9CE", "#ABEBC6" ,"#58D68D","#28B463","#1D8348"]
-	var colorbar = [color1,color2,color3]
+	var color4 = ["#F5CBA7", "#F0B27A" ,"#EB984E","#E67E22","#CA6F1E"]
+	var colorbar = [color1,color2,color3,color4]
 	var myColor = d3.scaleThreshold()
 		.range(colorbar[flag])
 		.domain([max*0.2, max*0.4, max*0.6, max*0.8]);
@@ -198,8 +207,8 @@ function barChart(statistics,tyName){
 
 
 	var margin = {top: 30, right: 30, bottom: 70, left: 60},
-    width = 360 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+    width = 330 - margin.left - margin.right,
+    height = 380 - margin.top - margin.bottom;
 
 	// append the svg object to the body of the page
 	var areaBC = d3.select("#areaBarChart")
@@ -343,6 +352,6 @@ function download(NotFormatted,tyName) {
 	exportCSVFile(headers, itemsFormatted, fileTitle); // call the exportCSVFile() function to process the JSON and trigger the download
 }
 
+d3.json("https://raw.githubusercontent.com/Penny8336/DV-homework2/master/taiwan.json", drawMap)
+// d3.json(townarea, drawMap)
 
-
-d3.json("taiwan (2).json", drawMap)

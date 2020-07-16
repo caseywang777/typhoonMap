@@ -96,7 +96,14 @@
         stroke-linecap: round;
         opacity: .7;
     }
-    
+    .area4{
+		fill: rgb(245, 156, 24); 
+		stroke: rgb(245, 156, 24);		
+		stroke-width: 8px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        opacity: .7;
+    }
 	.chArea{
 		fill: rgb(243, 132, 27); 
 		stroke: rgb(243, 132, 27);		
@@ -111,8 +118,6 @@
 		stroke: rgb(56, 147, 250);		
 		stroke-width: 0.2px;
         opacity: .9;
-
-
 	}
 	.pretty-select {
         /*移除箭頭樣式*/
@@ -129,7 +134,7 @@
         background-color: rgb(255, 255, 255);
         color: rgb(0, 0, 0);
         cursor: pointer;
-        margin-left: 20px;
+        margin-bottom: 10px;
     }
 
     .forhistogram{
@@ -179,7 +184,7 @@
         <div class="container">
             <section class="jumbotron text-center" style="background-color: #e1eef5;">
             <h3>Flood Maps</h1>
-            <p >Something short and leading about ...</p>
+            <!-- <p >Something short and leading about ...</p> -->
             </section>
         </div>
       
@@ -187,17 +192,20 @@
             <div class="row" id="row1">
                 <div class="col-sm-2" ></div>
                 <div class="col-sm-2" style="background-color:#e1eef5;" id="choose"></div>
-                <div class="col-sm-2"> <buttpon id ="but" class="button"> Download Data</button> </div>
                 <div class="col-sm-6" style="background-color:#e1eef5;"></div>
             </div>
-            
-            <div class="row"id="row2">
+            <div class="row" id="row1">
                 <div class="col-sm-2" ></div>
-                <div class="col-sm-4"  id="taiwan">
+                <div class="col-sm-2"> <buttpon id ="but" class="button"> Download Data</button> </div>
+                <div class="col-sm-6" style="background-color:#e1eef5;"></div>
+            </div>            
+            <div class="row"id="row2">
+                <div class="col-sm-3" ></div>
+                <div class="col-sm-3"  id="taiwan">
                     <div id="taiwantooltip"></div>
                 </div>
         
-                <div class="col-sm-4" id="histogram" style="background-color:#e1eef5;" > 
+                <div class="col-sm-5" id="histogram" style="background-color:#e1eef5;" > 
                     <p >area bar chart (Square meter)</p>
                     <div id = "town"  style="height: 30px">　 </div>
                     <div id="areaBarChart"></div>
@@ -209,7 +217,7 @@
 
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
-    <script  src="./js.js"></script>
+    <script  src="js.js"></script>
 
 </body>
 </html>
