@@ -43,7 +43,7 @@ var active = d3.select(null);
 
 var svg = d3.select("#taiwan").append("svg")
 	.attr("height", 800)
-	.attr("width", 400)
+	.attr("width", 500)
 	.attr("class", "fortaiwan")
 	.call(d3.zoom()
 	.on("zoom", function () {
@@ -113,7 +113,7 @@ function drawMap(err, Tgeojson) {
 				var countyCode = getAttr.COUNTYCODE
 				var countyName = getAttr.COUNTYNAME
 				var townName = getAttr.TOWNNAME
-				var name = getAttr.name //有時候name有路名有時候null
+				var name = getAttr.name //有時候null
 				var calArea = turf.area(geojson.features[i]).toFixed(2)
 				for (k=0; k<tjosn.features.length; k++){
 					if (townName == tjosn.features[k].properties.T_Name){
