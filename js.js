@@ -37,7 +37,7 @@ var name_index = [
 
 //tootip
 var divbar = d3.select("#town")
-var projection = d3.geoMercator().center([123, 25]).scale(7000)
+var projection = d3.geoMercator().center([124, 25]).scale(7000)
 var path = d3.geoPath().projection(projection) //創造path
 var active = d3.select(null);
 
@@ -347,7 +347,7 @@ function download(NotFormatted,tyName) {
 		})
 	});
 
-	var fileTitle = 'csv'; // or 'my-unique-title'
+	var fileTitle = tyName; // or 'my-unique-title'
 
 	exportCSVFile(headers, itemsFormatted, fileTitle); // call the exportCSVFile() function to process the JSON and trigger the download
 }
