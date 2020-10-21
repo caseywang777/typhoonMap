@@ -1,0 +1,275 @@
+<!-- <!DOCTYPE html> -->
+<html>
+
+<head>
+    <title>Taiwan Map</title>
+    <meta charset="utf-8">
+    <link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
+
+    <style>
+
+	.background {
+  		fill: none;
+  		pointer-events: all;	
+	}
+
+	.hi {
+		fill: none;
+	}
+    body {
+        background-color: #e1eef5;
+    }
+
+
+
+    .change {
+		fill: rgb(238, 27, 27);
+		stroke: rgb(75, 75, 75);
+	}
+	.feature.active{
+		fill: orange;
+	}
+	.mesh {
+		fill: none;
+		stroke: #fff;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+    div.tooltip {
+        position: absolute;
+        text-align: center;
+        width: 200px;
+        height: 50px;
+        padding: 2px;
+        font-size: 19px;
+        background: white;
+        border: 1px;
+        border-radius: 8px;
+        pointer-events: none;
+    }	
+
+        .histooltip {
+        text-align: center;
+        width: 100px;
+        height: 200px;
+        padding: 2px;
+        font-size: 19px;
+        background: white;
+        border: 1px;
+        border-radius: 8px;
+        pointer-events: none;
+    }	
+
+	.area1{
+		fill: rgb(56, 147, 250); 
+		stroke: rgb(56, 147, 250);		
+		stroke-width: 8px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        opacity: .7;
+	}
+
+    .area2{
+		fill: rgb(198, 112, 248); 
+		stroke: rgb(198, 112, 248);		
+		stroke-width: 8px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        opacity: .7;
+    }
+    
+    .area3{
+		fill: rgb(96, 223, 70); 
+		stroke: rgb(96, 223, 70);		
+		stroke-width: 8px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        opacity: .7;
+    }
+    .area4{
+		fill: rgb(245, 156, 24); 
+		stroke: rgb(245, 156, 24);		
+		stroke-width: 8px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        opacity: .7;
+    }
+	.chArea{
+		fill: rgb(243, 132, 27); 
+		stroke: rgb(243, 132, 27);		
+		stroke-width: 8px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        opacity: .7;
+	}
+	.pretty-select {
+        /*移除箭頭樣式*/
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        /*改變右邊箭頭樣式*/
+        background: url("arrow.png") no-repeat right center transparent;
+        font-size: 18px;
+        border: 0px;
+        width: 200px;
+        /* height: 32px; */
+        text-align-last: center;
+        background-color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+        cursor: pointer;
+        /* margin-bottom: 10px; */
+    }
+
+    .forhistogram{
+        position: absolute;
+
+            }
+    
+    .fortaiwan{
+        position: absolute;
+            }
+        
+     .text-small {
+        font-size: 9px;
+    }
+
+    .text-histogram {
+        font-size: 12px;
+    }
+
+
+    .text-max {
+        font-size: 11px;
+    }
+    .textsize{
+        font-size: 11px;
+    }
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    
+    font-size: 12px;
+    }
+
+    .buttonB {
+    background-color: #28a3e6; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    }
+
+    /* navbar */
+    .navbar {
+    overflow: hidden;
+    background-color: rgba(5, 58, 173, 0.712);
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+
+    .dropdown {
+    float: left;
+    overflow: hidden;
+    }
+
+    .dropdown .dropbtn {
+    cursor: pointer;
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    }
+
+    .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+    background-color: #219ad3;
+    }
+
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    }
+
+    .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    }
+
+    .dropdown-content a:hover {
+    background-color: #ddd;
+    }
+
+    .show {
+    display: block;
+    }
+
+    </style>
+    
+
+</head>
+
+<body>
+
+    <div class="container align-items-center">
+        <div class="navbar ">
+            <div class="dropdown">
+              <div class="dropbtn" id="choose">
+                <!-- <i class="fa fa-caret-down"></i> -->
+              </div>
+            </div>
+            <a href="#home" id ="percent">Flooding Area Formula Percent</a>
+            <a href="#news" id ="but" >Download Data</a>
+        </div>
+
+        <div class="row"id="row2" >
+            <div class="col-sm-1"id="taiwan" style="width: 500;">
+               <div id="taiwantooltip"></div>
+            </div>
+            <div id="histogram" style="background-color:#e1eef5;" > 
+                <p >area bar chart (Square meter)</p>
+                <div id = "town"  style="height: 30px">　 </div>
+                <div id="areaBarChart"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script  src="js.js"></script>
+
+</body>
+</html>
