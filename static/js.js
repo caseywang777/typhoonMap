@@ -435,5 +435,6 @@ function percentModel(NotFormatted,tyName) {
 			.style("opacity", 0);
 	})
 }
-d3.json("/taiwan.json", drawMap)
+// d3.json("/taiwan.json", drawMap)
+d3.json("https://dl.dropboxusercontent.com/s/4ztv66zhk6tzklv/taiwan.json?dl=0", drawMap)
 
