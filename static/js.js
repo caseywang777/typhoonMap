@@ -412,7 +412,8 @@ function percentModel(NotFormatted,tyName) {
 		}
 		else {
 			d.per = 0
-			return city_color(d.tol); //Non Flooded District 
+			//return city_color(d.tol); //Non Flooded District 
+			return d3.rgb(255,255,255);
 		}
 	})
 	.style("opacity",0.8)
